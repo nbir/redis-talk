@@ -11,7 +11,7 @@ def consume(consumer, queue):
     r.brpoplpush(queue, consumer_queue)
     (_, message) = r.blpop(consumer_queue)
 
-    print('Consumed by {}... {}'.format(consumer, message))
+    print('{} consumed... {}'.format(consumer, message))
 
 
 while True:
