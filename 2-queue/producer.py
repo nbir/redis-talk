@@ -3,17 +3,17 @@ import time
 
 from redis import Redis
 
-queue_name = sys.argv[1]
 
-r = Redis()
+def publish(queue, message):
+    r = Redis()
+
+    r.rpush(queue, message)
+    print('Published... {}'.format(message))
+
 
 counter = 0
-
 while True:
-    message = 'Message {}'.format(counter)
-    r.rpush(queue_name, message)
-
-    print('Published... {}'.format(message))
+    publish(sys.argv[1], 'Message {}'.format(counter))
 
     time.sleep(1)
     counter += 1

@@ -2,11 +2,13 @@ import sys
 
 from redis import Redis
 
-queue_name = sys.argv[1]
 
-r = Redis()
+def consume(queue):
+    r = Redis()
+
+    (_, message) = r.blpop(queue)
+    print('Consumed... {}'.format(message))
+
 
 while True:
-    (_, message) = r.blpop(queue_name)
-
-    print('Consumed... {}'.format(message))
+    consume(sys.argv[1])
