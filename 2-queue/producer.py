@@ -7,7 +7,7 @@ from redis import Redis
 def publish(queue, message):
     r = Redis()
 
-    r.rpush(queue, message)
+    r.lpush(queue, message)
     print('Published... {}'.format(message))
 
 
