@@ -3,7 +3,11 @@ import sys
 
 from redis import Redis
 
+handle = sys.argv[1]
+message = sys.argv[2]
+max_posts = 5
+
 r = Redis()
 
-r.lpush(sys.argv[1], sys.argv[2])
-r.ltrim(sys.argv[1], 0, 4)
+r.lpush(handle, message)
+r.ltrim(handle, 0, max_posts - 1)

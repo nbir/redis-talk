@@ -4,10 +4,11 @@ import time
 
 from redis import Redis
 
+handle = sys.argv[1]
+
 r = Redis()
 
-
-def display_timeline(handle):
+while True:
     os.system('clear')
     print('{}\'s timeline...\n'.format(handle))
 
@@ -16,7 +17,4 @@ def display_timeline(handle):
     for item in items:
         print(item)
 
-
-while True:
-    display_timeline(sys.argv[1])
     time.sleep(1)
